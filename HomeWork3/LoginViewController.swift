@@ -17,6 +17,13 @@ class LoginViewController: UIViewController {
     private let userName = "Donald"
     private let password = "MAGA2020"
     
+    // MARK: - Override Methods
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        view.endEditing(true)
+    }
+    
     // MARK: - IB Actions
     @IBAction func forgotButtonPressed(_ sender: UIButton) {
         switch sender.tag {
@@ -39,6 +46,11 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
         welcomeVC.userName = userName
+    }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        userNameTextField.text = nil
+        passwordTextField.text = nil
     }
     
     // MARK: - Private Methods
