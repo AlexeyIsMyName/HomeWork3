@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HomeWork3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="HomeWork3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,6 +36,10 @@
                                 <rect key="frame" x="180" y="337" width="54" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="logInButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="07G-yn-g8x"/>
+                                    <segue destination="O5a-Nk-5hw" kind="presentation" modalPresentationStyle="fullScreen" id="0P9-F5-HML"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-nX-KPI">
                                 <rect key="frame" x="62" y="393" width="290" height="27"/>
@@ -44,11 +48,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="110" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Forgot User Name?"/>
+                                        <connections>
+                                            <action selector="forgotButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A9X-pH-LDV"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-kk-q2t">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-kk-q2t">
                                         <rect key="frame" x="189" y="0.0" width="101" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Forgot Password?"/>
+                                        <connections>
+                                            <action selector="forgotButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3T2-rT-Z0B"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -66,10 +76,59 @@
                             <constraint firstItem="0Ie-nX-KPI" firstAttribute="width" secondItem="FoS-8A-pbr" secondAttribute="width" id="thK-vq-MLU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="8L9-C8-9rJ" id="yoc-OP-0Ti"/>
+                        <outlet property="userNameTextField" destination="4L3-SM-J5W" id="UDm-gW-ynk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="117"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="Csb-AH-MEO">
+            <objects>
+                <viewController id="O5a-Nk-5hw" customClass="WelcomeViewController" customModule="HomeWork3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Y3-7X-QzL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsd-0K-pVz">
+                                <rect key="frame" x="181" y="503" width="52" height="30"/>
+                                <state key="normal" title="Log out"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, User!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tus-Dg-IFI">
+                                <rect key="frame" x="106" y="80" width="202" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✌️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCz-In-P2q">
+                                <rect key="frame" x="180" y="196" width="54" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BE5-xj-GKB"/>
+                        <color key="backgroundColor" red="0.83216959239999999" green="0.98548370600000001" blue="0.47333085539999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zCz-In-P2q" firstAttribute="centerX" secondItem="6Y3-7X-QzL" secondAttribute="centerX" id="7nu-zQ-99k"/>
+                            <constraint firstItem="tus-Dg-IFI" firstAttribute="centerX" secondItem="6Y3-7X-QzL" secondAttribute="centerX" id="H9Y-f4-OYp"/>
+                            <constraint firstItem="fsd-0K-pVz" firstAttribute="centerY" secondItem="BE5-xj-GKB" secondAttribute="centerY" constant="150" id="LvW-dR-5Wt"/>
+                            <constraint firstItem="tus-Dg-IFI" firstAttribute="top" secondItem="BE5-xj-GKB" secondAttribute="top" constant="80" id="TnP-Lv-GdH"/>
+                            <constraint firstItem="zCz-In-P2q" firstAttribute="top" secondItem="tus-Dg-IFI" secondAttribute="bottom" constant="80" id="dm1-oG-5Iy"/>
+                            <constraint firstItem="fsd-0K-pVz" firstAttribute="centerX" secondItem="6Y3-7X-QzL" secondAttribute="centerX" id="yV0-s2-od1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="I5q-G3-d6h"/>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="tus-Dg-IFI" id="0gl-fa-IG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q0x-GS-ipv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="117"/>
         </scene>
     </scenes>
     <resources>
