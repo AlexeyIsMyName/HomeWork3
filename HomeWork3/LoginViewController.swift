@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
     @IBOutlet var userNameTextField: UITextField!
@@ -16,6 +16,13 @@ class LoginViewController: UIViewController {
     // MARK: - Private Properties
     private let userName = "Donald"
     private let password = "MAGA2020"
+    
+    // MARK: - Life Cycles Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        userNameTextField.delegate = self
+    }
     
     // MARK: - Override Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,8 +44,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInButtonPressed() {
         if userNameTextField.text != userName || passwordTextField.text != password {
+            passwordTextField.text = nil
             showAlarmWith(title: "Invalid login or password",
                           message: "Please, enter correct login and password")
+        } else {
+            self.performSegue(withIdentifier: "firstSegue",
+                              sender: nil)
         }
     }
     
@@ -51,6 +62,15 @@ class LoginViewController: UIViewController {
     @IBAction func unwind(segue: UIStoryboardSegue) {
         userNameTextField.text = nil
         passwordTextField.text = nil
+    }
+    
+    // MARK: - TextFieldDelegate Method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTextField {
+            userNameTextField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        }
+        return true
     }
     
     // MARK: - Private Methods
