@@ -31,6 +31,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
+        welcomeVC.userName = userName
+    }
+    
     // MARK: - IB Actions
     @IBAction func forgotButtonPressed(_ sender: UIButton) {
         switch sender.tag {
@@ -48,15 +54,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             showAlarmWith(title: "Invalid login or password",
                           message: "Please, enter correct login and password")
         } else {
-            self.performSegue(withIdentifier: "firstSegue",
-                              sender: nil)
+            performSegue(withIdentifier: "firstSegue",
+                         sender: nil)
         }
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.userName = userName
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
@@ -67,7 +67,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - TextFieldDelegate Method
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == userNameTextField {
-            userNameTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
         }
         return true
@@ -80,6 +79,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default))
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }
